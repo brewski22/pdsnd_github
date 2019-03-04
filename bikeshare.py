@@ -1,8 +1,13 @@
 import time
 import pandas as pd
+import random
 
 # this really needs to be printed only once and not in every restart
 print('Hello! Let\'s explore some US bikeshare data.\n')
+
+#random month and weekday selection:
+rnd_month = random.randrange(0, 7)
+rnd_day = random.randrange(0, 7)
 
 def get_city():
     """
