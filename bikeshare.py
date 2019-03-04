@@ -163,7 +163,9 @@ def display_raw(df, current_row):
 
 def user_stats(df):
 
-    try:
+    try: # this try-except is entered as one of the files doesn't contain gender database
+         # and the script would fail at this part
+         # wich is avoided by the pass statement without any follow up
         """Displays statistics on bikeshare users."""
 
         print('\nCalculating User Stats...\n')
@@ -186,6 +188,7 @@ def user_stats(df):
         print('-'*40)
     except:
         pass #one of the csv files doesn't containt Gender column #progressiveDC
+
 
 def main():
 
