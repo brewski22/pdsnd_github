@@ -189,40 +189,37 @@ def user_stats(df):
 
 def main():
 
-    try:
-        while True:
-            # load filter
-            filename = get_city()
-            month_filter = get_month()
-            day_filter = get_day()
+    while True:
+        # load filter
+        filename = get_city()
+        month_filter = get_month()
+        day_filter = get_day()
 
-            # load data file
-            df = pd.read_csv(filename)
+        # load data file
+        df = pd.read_csv(filename)
 
-            #Format Time columns
-            df['Start Time'] = pd.to_datetime(df['Start Time'], errors='ignore')
-            df['End Time'] = pd.to_datetime(df['End Time'], errors='ignore')
+        #Format Time columns
+        df['Start Time'] = pd.to_datetime(df['Start Time'], errors='ignore')
+        df['End Time'] = pd.to_datetime(df['End Time'], errors='ignore')
 
-            # filter by month, only if month value was given (1 - 6)
-            if month_filter != 0:
-                df = df[df['Start Time'].dt.month == month_filter]
+        # filter by month, only if month value was given (1 - 6)
+        if month_filter != 0:
+            df = df[df['Start Time'].dt.month == month_filter]
 
-            # filter by day only if day value was given (0 - 6)
-            if day_filter >= 0 and day_filter <= 6:
-                df = df[df['Start Time'].dt.weekday == day_filter]
+        # filter by day only if day value was given (0 - 6)
+        if day_filter >= 0 and day_filter <= 6:
+            df = df[df['Start Time'].dt.weekday == day_filter]
 
-            # call individual stat functions
-            time_stats(df)
-            station_stats(df)
-            trip_duration_stats(df)
-            user_stats(df)
-            display_raw(df, 0) # starting line for iloc is 0
+        # call individual stat functions
+        time_stats(df)
+        station_stats(df)
+        trip_duration_stats(df)
+        user_stats(df)
+        display_raw(df, 0) # starting line for iloc is 0
 
-            restart = input('\nWould you like to restart? Enter yes(y) or no(n) ?\n')
-            if restart.lower() != 'y':
-                break
-    except:
-        pass
+        restart = input('\nWould you like to restart? Enter yes(y) or no(n) ?\n')
+        if restart.lower() != 'y':
+            break
 
 if __name__ == "__main__":
     main()
