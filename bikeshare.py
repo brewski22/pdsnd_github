@@ -21,6 +21,8 @@ def get_city():
         # get user input for city (chicago, new york city, washington)
         city = input('Would you like to see data for Chicago(c), New York(n) or Washington(w) ?\n')
         city = city.lower()
+        # this part is completely avoidable in all functions
+        # simply by adding .lower() at the end of the input statement
         if city not in city_dict:
             print('Invalid input.\n')
 
